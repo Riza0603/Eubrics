@@ -103,8 +103,12 @@ const Home = () => {
   };
 
   return (
-  <div className="p-8 max-w-4xl mx-auto bg-gray-100 shadow-lg rounded-lg mt-3">
-    <div className="flex justify-between items-center mb-8">
+    <div
+      className="min-h-screen  items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: "url('/back.jpg')" }}
+    >
+  <div className="p-8 max-w-4xl mx-auto bg-gray-100 shadow-lg rounded-lg">
+    <div className="flex justify-between items-center mb-8 mt-3">
       <h1 className="text-3xl font-bold">Behavior Management</h1>
       <button
         onClick={handleLogout}
@@ -230,6 +234,7 @@ const Home = () => {
         ))
       )}
     </div>
+  </div>
   </div>
 );
 };

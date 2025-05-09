@@ -6,31 +6,31 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post('http://localhost:5000/api/users/login', form);
-    localStorage.setItem('token', res.data.token);
-    localStorage.setItem('userId', res.data.user.id); 
-    localStorage.setItem('email', res.data.user.email);
-    localStorage.setItem('name', res.data.user.name);
-    toast.success('Logged In');
-    navigate('/home');
-  } catch (err) {
-  if (err.response && err.response.status === 404) {
-    toast.error('User not found');
-  } else if (err.response && err.response.status === 400) {
-    toast.error('Invalid password');
-  } else {
-    toast.error('Login failed');
-  }
-  }
-};
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/api/users/login', form);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.user.id);
+      localStorage.setItem('email', res.data.user.email);
+      localStorage.setItem('name', res.data.user.name);
+      toast.success('Logged In');
+      navigate('/home');
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        toast.error('User not found');
+      } else if (err.response && err.response.status === 400) {
+        toast.error('Invalid password');
+      } else {
+        toast.error('Login failed');
+      }
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/back.jpg')" }}>
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
