@@ -3,13 +3,16 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Circles } from 'react-loader-spinner'; // loader spinner
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false); // loader state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // show loader
     try {
       const res = await axios.post('https://eubricsserver.onrender.com/api/users/login', form);
       localStorage.setItem('token', res.data.token);
@@ -26,6 +29,8 @@ const Login = () => {
       } else {
         toast.error('Login failed');
       }
+    } finally {
+      setLoading(false); // hide loader
     }
   };
 
@@ -48,9 +53,14 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition flex items-center justify-center"
+            disabled={loading}
           >
-            Login
+            {loading ? (
+              <Circles height="24" width="24" color="#fff" ariaLabel="loading" />
+            ) : (
+              'Login'
+            )}
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
