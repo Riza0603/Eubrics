@@ -17,14 +17,14 @@ const Home = () => {
 
   const fetchBehaviors = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/behaviors?userId=${userId}`
+      `https://eubricsserver.onrender.com/api/behaviors?userId=${userId}`
     );
     setBehaviors(res.data);
   };
 
   const addBehavior = async () => {
     if (!newBehavior) return;
-    await axios.post("http://localhost:5000/api/behaviors", {
+    await axios.post("https://eubricsserver.onrender.com/api/behaviors", {
       name: newBehavior,
       userId: userId,
     });
@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   const deleteBehavior = async (id) => {
-    await axios.delete(`http://localhost:5000/api/behaviors/${id}`);
+    await axios.delete(`https://eubricsserver.onrender.com/api/behaviors/${id}`);
     fetchBehaviors();
   };
 
@@ -47,7 +47,7 @@ const Home = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/behaviors/${editingBehaviorId}`,
+        `https://eubricsserver.onrender.com/api/behaviors/${editingBehaviorId}`,
         { name: editingBehaviorName }
       );
       setEditingBehaviorId(null);
@@ -60,7 +60,7 @@ const Home = () => {
 
   const addItem = async (behaviorId, itemName) => {
     await axios.post(
-      `http://localhost:5000/api/behaviors/${behaviorId}/items`,
+      `https://eubricsserver.onrender.com/api/behaviors/${behaviorId}/items`,
       { name: itemName }
     );
     fetchBehaviors();
@@ -68,7 +68,7 @@ const Home = () => {
 
   const deleteItem = async (behaviorId, itemId) => {
     await axios.delete(
-      `http://localhost:5000/api/behaviors/${behaviorId}/items/${itemId}`
+      `https://eubricsserver.onrender.com/api/behaviors/${behaviorId}/items/${itemId}`
     );
     fetchBehaviors();
   };
@@ -83,7 +83,7 @@ const Home = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/behaviors/items/${editingItemId}`,
+        `https://eubricsserver.onrender.com/api/behaviors/items/${editingItemId}`,
         { name: editingItemName }
       );
       setEditingItemId(null);

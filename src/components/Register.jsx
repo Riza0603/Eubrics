@@ -8,7 +8,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/users/register', form);
+    await axios.post('https://eubricsserver.onrender.com/api/users/register', form);
     alert('Registered Successfully');
     navigate('/');
   };
