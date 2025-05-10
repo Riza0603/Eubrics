@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { Circles } from 'react-loader-spinner'; // loader spinner
+import { Circles } from 'react-loader-spinner'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
-  const [loading, setLoading] = useState(false); // loader state
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // show loader
+    setLoading(true); 
     try {
       await axios.post('https://eubricsserver.onrender.com/api/users/register', form);
-      alert('Registered Successfully');
+      toast.success('Registered Successfully');
       navigate('/');
     } catch (err) {
-      alert('Registration failed');
+      toast.error('Registration failed');
     } finally {
-      setLoading(false); // hide loader
+      setLoading(false); 
     }
   };
 
